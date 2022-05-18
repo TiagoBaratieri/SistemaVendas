@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.com.baratieri.jdbc;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
