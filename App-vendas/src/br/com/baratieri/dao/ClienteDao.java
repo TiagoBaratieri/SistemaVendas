@@ -5,6 +5,7 @@
 package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
+import br.com.baratieri.webservices.WebServiceCep;
 import br.com.model.Cliente;
 import java.sql.*;
 import java.util.ArrayList;
@@ -196,8 +197,8 @@ public class ClienteDao {
             return null;
         }
     }
-    
-      //metodo consultaCliente por Nome
+
+    //metodo consultaCliente por Nome
     public Cliente consultaPorNome(String nome) {
         try {
             //1 passo - criar o sql , organizar e executar.
@@ -232,6 +233,26 @@ public class ClienteDao {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
             return null;
         }
+    }
+
+    public Cliente buscaCep(String cep) {
+
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+
+        Cliente obj = new Cliente();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setUf(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            return null;
+        }
+
     }
 
 }

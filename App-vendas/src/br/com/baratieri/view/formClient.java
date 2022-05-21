@@ -7,6 +7,7 @@ package br.com.baratieri.view;
 import br.com.baratieri.dao.ClienteDao;
 import br.com.baratieri.util.Utilitarios;
 import br.com.model.Cliente;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -213,7 +214,7 @@ public class formClient extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(" Consultas de clientes", jPanel3);
+        jTabbedPane1.addTab(" Consultas de Clientes", jPanel3);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -265,7 +266,7 @@ public class formClient extends javax.swing.JFrame {
         jLabel27.setText("Uf:");
 
         cbUf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sp", "PR", "MT", "MG" }));
+        cbUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -317,11 +318,16 @@ public class formClient extends javax.swing.JFrame {
         txtTelefone.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
         try {
-            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##### - ###")));
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         txtCep.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        txtCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCepKeyPressed(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel28.setText("CEP:");
@@ -391,9 +397,7 @@ public class formClient extends javax.swing.JFrame {
                             .addGroup(painel_dadosLayout.createSequentialGroup()
                                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(painel_dadosLayout.createSequentialGroup()
-                                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painel_dadosLayout.createSequentialGroup()
                                 .addGap(20, 20, 20)
@@ -787,6 +791,27 @@ public class formClient extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCepKeyPressed
+        //Programacao do keypress
+	if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+         Cliente obj =  new Cliente();
+         ClienteDao dao;
+            try {
+                dao = new ClienteDao();
+                 obj = dao.buscaCep(txtCep.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                 
+         txtEndereco.setText(obj.getEndereco());
+         txtBairro.setText(obj.getBairro());
+         txtCidade.setText(obj.getCidade());
+         cbUf.setSelectedItem(obj.getUf());               
+         System.out.println(obj.getUf());
+         
+     }
+    }//GEN-LAST:event_txtCepKeyPressed
 
     /**
      * @param args the command line arguments
