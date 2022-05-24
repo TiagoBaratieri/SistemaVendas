@@ -488,7 +488,7 @@ public class formClient extends javax.swing.JFrame {
         );
 
         btnDeletar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDeletar.setText("Deletar");
+        btnDeletar.setText("Excluir");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeletarActionPerformed(evt);
@@ -504,7 +504,7 @@ public class formClient extends javax.swing.JFrame {
         });
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSalvar.setText("Salvar");
+        btnSalvar.setText("Cadastrar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -678,7 +678,7 @@ public class formClient extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-          Cliente obj = new Cliente();
+        Cliente obj = new Cliente();
 
         obj.setNome(txtNome.getText());
         obj.setRg(txtRg.getText());
@@ -713,7 +713,7 @@ public class formClient extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-          Cliente obj = new Cliente();
+        Cliente obj = new Cliente();
 
         obj.setId(Integer.parseInt(txtCod.getText()));
 

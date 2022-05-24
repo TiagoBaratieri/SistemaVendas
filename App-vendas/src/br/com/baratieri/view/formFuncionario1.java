@@ -139,7 +139,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
@@ -265,6 +265,11 @@ public class formFuncionario1 extends javax.swing.JFrame {
 
         cbUf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbUf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUfActionPerformed(evt);
+            }
+        });
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -386,11 +391,10 @@ public class formFuncionario1 extends javax.swing.JFrame {
                                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(3, 3, 3)))
                 .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel22)
-                        .addComponent(jLabel25)
-                        .addComponent(jLabel24)
-                        .addComponent(jLabel26))
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel26)
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,7 +504,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
         );
 
         btnDeletar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDeletar.setText("Deletar");
+        btnDeletar.setText("Excluir");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeletarActionPerformed(evt);
@@ -516,7 +520,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
         });
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSalvar.setText("Salvar");
+        btnSalvar.setText("Cadastrar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -583,8 +587,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -838,6 +841,10 @@ public class formFuncionario1 extends javax.swing.JFrame {
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
 
     }//GEN-LAST:event_txtPesquisaActionPerformed
+
+    private void cbUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbUfActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
 package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
+import br.com.baratieri.util.Utilitarios;
+import br.com.model.Cliente;
 import br.com.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,6 +66,7 @@ public class UsuarioDao {
             while (rs.next()) {
                 Usuario obj = new Usuario();
 
+                obj.setId(rs.getInt("id"));
                 obj.setLogin(rs.getString("login"));
                 obj.setNivelAcesso(rs.getString("nivel_acesso"));
                 obj.setSenha(rs.getString("senha"));
@@ -77,6 +80,59 @@ public class UsuarioDao {
             JOptionPane.showMessageDialog(null, "Erro:" + e);
         }
         return null;
+
+    }
+
+    public void alterarUsuario(Usuario obj) {
+
+        try {
+
+            String sql = "update tb_usuarios set login = ?,nivel_acesso= ?,senha = ? where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, obj.getLogin());
+            stmt.setString(2, obj.getNivelAcesso());
+            
+            if(obj.getSenha().equals(null)){
+                JOptionPane.showMessageDialog(null,"Campo obrigatório.");
+                 
+                
+            }else{
+                 stmt.setString(3, obj.getSenha());
+            }
+            stmt.setInt(4, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso.");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Atualizar usuário." + e);
+
+        }
+
+    }
+    
+      public void excluirUsuario(Usuario obj) {
+        try {
+
+            String sql = "delete from tb_usuarios where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso com sucesso.");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir." + e);
+
+        }
 
     }
 
