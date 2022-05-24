@@ -121,7 +121,7 @@ public class ClienteDao {
         try {
             List<Cliente> lista = new ArrayList();
 
-            String sql = "select *from tb_clientes";
+            String sql = "select * from tb_clientes";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 

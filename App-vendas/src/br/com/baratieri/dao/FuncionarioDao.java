@@ -5,7 +5,6 @@
 package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
-import br.com.model.Cliente;
 import br.com.model.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
