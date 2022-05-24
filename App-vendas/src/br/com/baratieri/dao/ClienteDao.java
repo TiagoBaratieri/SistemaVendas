@@ -107,10 +107,10 @@ public class ClienteDao {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
+            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso.");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar." + e);
+            JOptionPane.showMessageDialog(null, "Erro ao Atualizar cliente." + e);
 
         }
 

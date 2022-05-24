@@ -637,9 +637,10 @@ public class formFuncionario1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Cliente obj = new Cliente();
+        Funcionario obj = new Funcionario();
 
         obj.setNome(txtNome.getText());
+        obj.setCargo(txtCargo.getText());
         obj.setRg(txtRg.getText());
         obj.setCpf(txtCpf.getText());
         obj.setEmail(txtEmail.getText());
@@ -657,25 +658,25 @@ public class formFuncionario1 extends javax.swing.JFrame {
 
         new Utilitarios().limparTela(painel_dados);
 
-        ClienteDao dao;
+        FuncionarioDao dao;
         try {
-            dao = new ClienteDao();
-            dao.alterarCliente(obj);
+            dao = new FuncionarioDao();
+            dao.alterarFuncionario(obj);
         } catch (Exception ex) {
             Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        Cliente obj = new Cliente();
+        Funcionario obj = new Funcionario();
 
         obj.setId(Integer.parseInt(txtCod.getText()));
 
         new Utilitarios().limparTela(painel_dados);
-        ClienteDao dao;
+        FuncionarioDao dao;
         try {
-            dao = new ClienteDao();
-            dao.excluirCliente(obj);
+            dao = new FuncionarioDao();
+            dao.excluirFuncionario(obj);
         } catch (Exception ex) {
             Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -684,11 +685,11 @@ public class formFuncionario1 extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String nome = "%" + txtNome.getText() + "%";
 
-        Cliente obj = new Cliente();
-        ClienteDao dao;
+        Funcionario obj = new Funcionario();
+        FuncionarioDao dao;
 
         try {
-            dao = new ClienteDao();
+            dao = new FuncionarioDao();
             obj = dao.consultaPorNome(nome);
         } catch (Exception ex) {
             Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
@@ -699,6 +700,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             //Exibi os dados do obj nos campos de texto
             txtCod.setText(String.valueOf(obj.getId()));
             txtNome.setText(obj.getNome());
+            txtCargo.setText(obj.getCargo());
             txtRg.setText(obj.getRg());
             txtCpf.setText(obj.getCpf());
             txtEmail.setText(obj.getEmail());
@@ -712,7 +714,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             txtCidade.setText(obj.getCidade());
             cbUf.setSelectedItem(obj.getUf());
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+            JOptionPane.showMessageDialog(null, "Funcionario não encontrado!");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
