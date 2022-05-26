@@ -14,6 +14,7 @@ public class Usuario {
     private String login;
     private String senha;
     private String nivelAcesso;
+    private String salt;
 
     public String getNivelAcesso() {
         return nivelAcesso;
@@ -46,6 +47,14 @@ public class Usuario {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
     
     

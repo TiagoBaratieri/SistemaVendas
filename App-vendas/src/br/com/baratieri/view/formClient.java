@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tiago
  */
-public class formClient extends javax.swing.JFrame {
+public class FormClient extends javax.swing.JFrame {
 
     public void listar() throws Exception {
         ClienteDao dao = new ClienteDao();
@@ -47,7 +47,7 @@ public class formClient extends javax.swing.JFrame {
         });
     }
 
-    public formClient() {
+    public FormClient() {
         initComponents();
     }
 
@@ -484,7 +484,7 @@ public class formClient extends javax.swing.JFrame {
                             .addComponent(jLabel29)
                             .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         btnDeletar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -528,12 +528,12 @@ public class formClient extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(284, 284, 284)
                         .addComponent(btnDeletar)
-                        .addGap(55, 55, 55)
+                        .addGap(64, 64, 64)
                         .addComponent(btnEditar)
-                        .addGap(131, 131, 131)
+                        .addGap(122, 122, 122)
                         .addComponent(btnSalvar)
-                        .addGap(86, 86, 86)
-                        .addComponent(btnNovo))
+                        .addGap(55, 55, 55)
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(painel_dados, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -542,14 +542,14 @@ public class formClient extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(painel_dados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
                     .addComponent(btnSalvar)
                     .addComponent(btnEditar)
-                    .addComponent(btnDeletar))
+                    .addComponent(btnDeletar)
+                    .addComponent(btnNovo))
                 .addContainerGap())
         );
 
@@ -584,7 +584,7 @@ public class formClient extends javax.swing.JFrame {
         try {
             listar();
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -636,7 +636,7 @@ public class formClient extends javax.swing.JFrame {
                 });
             });
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
@@ -669,7 +669,7 @@ public class formClient extends javax.swing.JFrame {
                 });
             });
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
@@ -703,7 +703,7 @@ public class formClient extends javax.swing.JFrame {
             dao = new ClienteDao();
              dao.alterarCliente(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -723,7 +723,7 @@ public class formClient extends javax.swing.JFrame {
             dao = new ClienteDao();
                dao.excluirCliente(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnDeletarActionPerformed
@@ -756,7 +756,7 @@ public class formClient extends javax.swing.JFrame {
             dao = new ClienteDao();
               dao.cadastrarCliente(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
       
@@ -772,7 +772,7 @@ public class formClient extends javax.swing.JFrame {
             dao = new ClienteDao();
             obj = dao.consultaPorNome(nome);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (obj.getNome() != null) {
@@ -810,7 +810,7 @@ public class formClient extends javax.swing.JFrame {
                 dao = new ClienteDao();
                  obj = dao.buscaCep(txtCep.getText());
             } catch (Exception ex) {
-                Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
             }
                  
          txtEndereco.setText(obj.getEndereco());
@@ -843,20 +843,21 @@ public class formClient extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formClient().setVisible(true);
+                new FormClient().setVisible(true);
             }
         });
     }

@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/dao/UsuarioDao.java</file>
             <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/dao/ClienteDao.java</file>
-            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/formClient.java</file>
-            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/formFuncionario1.java</file>
-            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/formUsuario.java</file>
+            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/FormClient.java</file>
+            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/FrameMenu.java</file>
+            <file>file:/C:/Workspace-projetos-java/App-vendas/src/br/com/baratieri/view/FrameLogin.java</file>
         </group>
     </open-files>
 </project-private>

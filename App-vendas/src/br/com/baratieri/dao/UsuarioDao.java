@@ -5,15 +5,19 @@
 package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
-import br.com.baratieri.util.Utilitarios;
-import br.com.model.Cliente;
+import br.com.baratieri.util.Hash;
+import br.com.baratieri.view.FrameMenu;
 import br.com.model.Usuario;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +32,7 @@ public class UsuarioDao {
         this.con = ConnectionFactory.abrir();
     }
 
-    public void cadastrarUsuario(Usuario obj) {
+    public void cadastrarUsuario(Usuario obj) throws NoSuchAlgorithmException {
 
         try {
 
@@ -36,7 +40,8 @@ public class UsuarioDao {
                     + " values (?,?,?)";
 
             PreparedStatement stmt = con.prepareStatement(sql);
-
+            obj.setSenha(Hash.toMD5(obj.getSenha() + obj.getSalt()));
+            obj.setSalt(Calendar.getInstance().getTime().toString() + "#&*@");
             stmt.setString(1, obj.getLogin());
             stmt.setString(2, obj.getNivelAcesso());
             stmt.setString(3, obj.getSenha());
@@ -83,24 +88,20 @@ public class UsuarioDao {
 
     }
 
-    public void alterarUsuario(Usuario obj) {
+    public void alterarUsuario(Usuario obj) throws NoSuchAlgorithmException {
 
         try {
 
             String sql = "update tb_usuarios set login = ?,nivel_acesso= ?,senha = ? where id = ?";
-
             PreparedStatement stmt = con.prepareStatement(sql);
+            obj.setSenha(Hash.toMD5(obj.getSenha() + obj.getSalt()));
+            obj.setSalt(Calendar.getInstance().getTime().toString() + "#&*@");
 
             stmt.setString(1, obj.getLogin());
             stmt.setString(2, obj.getNivelAcesso());
-            
-            if(obj.getSenha().equals(null)){
-                JOptionPane.showMessageDialog(null,"Campo obrigatório.");
-                 
-                
-            }else{
-                 stmt.setString(3, obj.getSenha());
-            }
+
+            stmt.setString(3, obj.getSenha());
+
             stmt.setInt(4, obj.getId());
 
             stmt.execute();
@@ -114,8 +115,8 @@ public class UsuarioDao {
         }
 
     }
-    
-      public void excluirUsuario(Usuario obj) {
+
+    public void excluirUsuario(Usuario obj) {
         try {
 
             String sql = "delete from tb_usuarios where id = ?";
@@ -168,4 +169,32 @@ public class UsuarioDao {
         }
 
     }
+
+    public void autentica(String login, String senha) {
+        try {
+
+            String sql = "select * from tb_usuarios where login = ? and senha = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, login);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+            
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo");
+                FrameMenu tela = new FrameMenu();
+
+                tela.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+    }
+    
+    
 }

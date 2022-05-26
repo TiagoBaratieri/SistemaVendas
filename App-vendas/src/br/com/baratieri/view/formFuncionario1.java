@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tiago
  */
-public class formFuncionario1 extends javax.swing.JFrame {
+public class FormFuncionario1 extends javax.swing.JFrame {
 
     public void listar() throws Exception {
         FuncionarioDao dao = new FuncionarioDao();
@@ -50,7 +50,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
         });
     }
 
-    public formFuncionario1() {
+    public FormFuncionario1() {
         initComponents();
     }
 
@@ -600,7 +600,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
         try {
             listar();
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -635,7 +635,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             dao = new FuncionarioDao();
             dao.cadastrarFucionario(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -666,7 +666,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             dao = new FuncionarioDao();
             dao.alterarFuncionario(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -681,7 +681,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             dao = new FuncionarioDao();
             dao.excluirFuncionario(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeletarActionPerformed
 
@@ -695,7 +695,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
             dao = new FuncionarioDao();
             obj = dao.consultaPorNome(nome);
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (obj.getNome() != null) {
@@ -730,7 +730,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
                 dao = new ClienteDao();
                 obj = dao.buscaCep(txtCep.getText());
             } catch (Exception ex) {
-                Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             txtEndereco.setText(obj.getEndereco());
@@ -800,7 +800,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
                 });
             });
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
@@ -834,7 +834,7 @@ public class formFuncionario1 extends javax.swing.JFrame {
                 });
             });
         } catch (Exception ex) {
-            Logger.getLogger(formFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormFuncionario1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
@@ -863,21 +863,23 @@ public class formFuncionario1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormFuncionario1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formFuncionario1().setVisible(true);
+                new FormFuncionario1().setVisible(true);
             }
         });
     }

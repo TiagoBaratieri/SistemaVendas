@@ -4,24 +4,20 @@
  */
 package br.com.baratieri.view;
 
-import br.com.baratieri.dao.ClienteDao;
 import br.com.baratieri.dao.UsuarioDao;
 import br.com.baratieri.util.Utilitarios;
-import br.com.model.Cliente;
 import br.com.model.Usuario;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author tiago
  */
-public class formUsuario extends javax.swing.JFrame {
+public class FormUsuario extends javax.swing.JFrame {
 
     public void listar() throws Exception {
         UsuarioDao dao = new UsuarioDao();
@@ -34,14 +30,13 @@ public class formUsuario extends javax.swing.JFrame {
             dados.addRow(new Object[]{
                 item.getId(),
                 item.getLogin(),
-                item.getNivelAcesso(),
-               // item.getSenha()
+                item.getNivelAcesso(), // item.getSenha()
             });
-                
+
         });
     }
 
-    public formUsuario() {
+    public FormUsuario() {
         initComponents();
     }
 
@@ -141,7 +136,7 @@ public class formUsuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Usuário", "Nivel de Acesso", "senha"
+                "Código", "Usuário", "Nivel de Acesso"
             }
         ));
         tabelaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -368,7 +363,7 @@ public class formUsuario extends javax.swing.JFrame {
         try {
             listar();
         } catch (Exception ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -377,7 +372,7 @@ public class formUsuario extends javax.swing.JFrame {
         txtCod.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString());
         txtUsuario.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 1).toString());
         bdNivelAcesso.setSelectedItem(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString());
-       // txtSenha.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 3).toString());
+        // txtSenha.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 3).toString());
 
 
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
@@ -399,7 +394,7 @@ public class formUsuario extends javax.swing.JFrame {
                     item.getNivelAcesso(),});
             });
         } catch (Exception ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
@@ -419,7 +414,7 @@ public class formUsuario extends javax.swing.JFrame {
                     item.getNivelAcesso(),});
             });
         } catch (Exception ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_txtPesquisaKeyPressed
@@ -430,27 +425,18 @@ public class formUsuario extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Usuario obj = new Usuario();
-        StringBuilder sb = new StringBuilder();
 
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-            byte messagedigest[] = md.digest(txtSenha.getText().getBytes("UTF-8"));
-            for (byte b : messagedigest) {
-                sb.append(String.format("%02x", 0xFF & b));
-            }
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        if (txtUsuario.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preenchimento do campo Login é obrigatório.");
+            return;
+        } else if (txtSenha.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preenchimento do campo Senha é obrigatório.");
+            return;
         }
-
-        String senhaMex = sb.toString();
 
         obj.setLogin(txtUsuario.getText());
         obj.setNivelAcesso(bdNivelAcesso.getSelectedItem().toString());
         obj.setSenha(txtSenha.getText());
-        obj.setSenha(senhaMex);
 
         new Utilitarios().limparTela(painel_dados);
 
@@ -462,7 +448,7 @@ public class formUsuario extends javax.swing.JFrame {
             dao.cadastrarUsuario(obj);
 
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -481,42 +467,32 @@ public class formUsuario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Usuario obj = new Usuario();
-        
-        StringBuilder sb = new StringBuilder();
 
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-            byte messagedigest[] = md.digest(txtSenha.getText().getBytes("UTF-8"));
-            for (byte b : messagedigest) {
-                sb.append(String.format("%02x", 0xFF & b));
-            }
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(formUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        if (txtUsuario.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preenchimento do campo Login é obrigatório.");
+            return;
+        } else if (txtSenha.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preenchimento do campo Senha é obrigatório.");
+            return;
         }
-
-        String senhaMex = sb.toString();
 
         obj.setLogin(txtUsuario.getText());
         obj.setNivelAcesso(bdNivelAcesso.getSelectedItem().toString());
         obj.setSenha(txtSenha.getText());
-        obj.setSenha(senhaMex);
-        
-        obj.setId(obj.getId());
-        
-         obj.setId(Integer.parseInt(txtCod.getText()));
-        
-        new Utilitarios().limparTela(painel_dados);
 
         UsuarioDao dao;
         try {
             dao = new UsuarioDao();
-             dao.alterarUsuario(obj);
+            dao.alterarUsuario(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        obj.setId(obj.getId());
+
+        obj.setId(Integer.parseInt(txtCod.getText()));
+
+        new Utilitarios().limparTela(painel_dados);
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -525,7 +501,7 @@ public class formUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          Usuario obj = new Usuario();
+        Usuario obj = new Usuario();
 
         obj.setId(Integer.parseInt(txtCod.getText()));
 
@@ -533,9 +509,9 @@ public class formUsuario extends javax.swing.JFrame {
         UsuarioDao dao;
         try {
             dao = new UsuarioDao();
-               dao.excluirUsuario(obj);
+            dao.excluirUsuario(obj);
         } catch (Exception ex) {
-            Logger.getLogger(formClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -560,14 +536,18 @@ public class formUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -576,7 +556,7 @@ public class formUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formUsuario().setVisible(true);
+                new FormUsuario().setVisible(true);
             }
         });
     }
