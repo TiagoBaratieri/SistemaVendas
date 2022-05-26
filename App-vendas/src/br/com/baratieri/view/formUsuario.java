@@ -182,7 +182,7 @@ public class FormUsuario extends javax.swing.JFrame {
 
         painel_dados.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/baratieri/view/image/user_icon.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user_icon.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel3.setText("Login");
@@ -544,6 +544,30 @@ public class FormUsuario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

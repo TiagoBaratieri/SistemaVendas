@@ -7,6 +7,7 @@ package br.com.baratieri.dao;
 import br.com.baratieri.jdbc.ConnectionFactory;
 import br.com.baratieri.util.Hash;
 import br.com.baratieri.view.FrameMenu;
+import br.com.baratieri.view.JFrameLogin;
 import br.com.model.Usuario;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -180,21 +181,23 @@ public class UsuarioDao {
             stmt.setString(2, senha);
 
             ResultSet rs = stmt.executeQuery();
-            
+
+            FrameMenu tela = new FrameMenu();
 
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Seja bem vindo");
-                FrameMenu tela = new FrameMenu();
+                tela.usuarioLogado = rs.getString("login");
+                tela.setVisible(true);
 
                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos.");
+                new JFrameLogin().setVisible(true);
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
-    
-    
+
 }
