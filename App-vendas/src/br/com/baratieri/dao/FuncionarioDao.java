@@ -5,7 +5,7 @@
 package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
-import br.com.model.Cliente;
+import br.com.baratieri.webservices.WebServiceCep;
 import br.com.model.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -233,6 +233,26 @@ public class FuncionarioDao {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Funcionario não encontrado!");
+            return null;
+        }
+
+    }
+    
+      public Funcionario buscaCep(String cep) {
+
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+
+        Funcionario obj = new Funcionario();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setUf(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
             return null;
         }
 
