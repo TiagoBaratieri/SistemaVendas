@@ -9,7 +9,7 @@ package br.com.model;
  * @author tiago
  */
 public class Fornecedor extends Cliente {
-    
+
     private String cnpj;
 
     public String getCnpj() {
@@ -20,6 +20,9 @@ public class Fornecedor extends Cliente {
         this.cnpj = cnpj;
     }
 
-  
-          
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
 }

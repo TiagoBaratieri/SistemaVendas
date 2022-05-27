@@ -59,29 +59,6 @@ public class FornecedorDao {
 
     }
 
-    //metodo excluir fornecedor
-    public void excluirFornecedor(Fornecedor obj) {
-        try {
-
-            //1 passo  - criar o comando sql
-            String sql = "delete from tb_fornecedores where id = ?";
-
-            //2 passo - conectar o banco de dados e organizar o comando sql
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, obj.getId());
-
-            //3 passo - executar o comando sql
-            stmt.execute();
-            stmt.close();
-
-            JOptionPane.showMessageDialog(null, "Fornecedor excluido com Sucesso!");
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro);
-
-        }
-
-    }
 
     //metodo alterarFornecedor
     public void alterarFornecedor(Fornecedor obj) {
