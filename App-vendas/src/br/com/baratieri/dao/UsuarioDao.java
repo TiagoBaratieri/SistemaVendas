@@ -6,8 +6,8 @@ package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
 import br.com.baratieri.util.Hash;
+import br.com.baratieri.view.FormLogin1;
 import br.com.baratieri.view.FrameMenu;
-import br.com.baratieri.view.JFrameLogin;
 import br.com.model.Usuario;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -17,8 +17,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -171,7 +169,7 @@ public class UsuarioDao {
 
     }
 
-    public void autentica(String login, String senha) {
+    public void efetuarLogin(String login, String senha) {
         try {
 
             String sql = "select * from tb_usuarios where login = ? and senha = ?";
@@ -192,7 +190,7 @@ public class UsuarioDao {
                 tela.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos.");
-                new JFrameLogin().setVisible(true);
+                new FormLogin1().setVisible(true);
             }
 
         } catch (SQLException e) {

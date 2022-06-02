@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -215,6 +217,85 @@ public class ProdutoDao {
             JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             return null;
         }
+    }
+
+    //metodo buscaProduto  por Codigo
+    public Produto buscaPorCodigo(int id) {
+        try {
+            //1 passo - criar o sql , organizar e executar.
+
+            String sql = "select * from tb_produtos where id =  ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+            Produto obj = new Produto();
+
+            if (rs.next()) {
+
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setPreco(rs.getDouble("preco"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Código não encontrado.");
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            return null;
+        }
+    }
+
+    //Metodo  que da baixa no estoque
+    public void baixaEstoque(int id, int qtdNova) {
+        try {
+
+            String sql = "update tb_produtos  set qtd_estoque= ?  where id=?";
+            //2 passo - conectar o banco de dados e organizar o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, qtdNova);
+            stmt.setInt(2, id);
+            stmt.execute();
+            stmt.close();
+
+            // JOptionPane.showMessageDialog(null, "Produto Alterardo com Sucesso!");
+        } catch (Exception erro) {
+
+            JOptionPane.showMessageDialog(null, "Erro : " + erro);
+
+        }
+
+    }
+
+    public int retornaEstoqueAtual(int id) {
+
+        try {
+
+            int qtdEstoque = 0;
+            String sql = "select qtd_estoque from tb_produtos where id= ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                qtdEstoque = (rs.getInt("qtd_estoque"));
+            }
+
+            return qtdEstoque;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
 }

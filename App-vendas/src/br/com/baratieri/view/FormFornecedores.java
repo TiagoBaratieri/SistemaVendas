@@ -652,7 +652,7 @@ public class FormFornecedores extends javax.swing.JFrame {
                 dados.addRow(new Object[]{
                     item.getId(),
                     item.getNome(),
-                    item.getCnpj(),               
+                    item.getCnpj(),
                     item.getEmail(),
                     item.getTelefone(),
                     item.getCelular(),
@@ -684,7 +684,7 @@ public class FormFornecedores extends javax.swing.JFrame {
                 dados.addRow(new Object[]{
                     item.getId(),
                     item.getNome(),
-                    item.getCnpj(),                  
+                    item.getCnpj(),
                     item.getEmail(),
                     item.getTelefone(),
                     item.getCelular(),
