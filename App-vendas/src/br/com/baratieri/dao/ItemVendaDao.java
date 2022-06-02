@@ -6,8 +6,13 @@ package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
 import br.com.model.ItemVenda;
+import br.com.model.Produto;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,5 +51,39 @@ public class ItemVendaDao {
         }
 
     }
+    
+      public List<ItemVenda> listaItensPorVenda(int venda_id) {
+           try {
+            String query = "select p.nome, i.qtd, p.preco, i.subtotal from tb_itensvendas as i "
+                                 + " inner join tb_produtos as p on(i.produto_id = p.id) where i.venda_id = ? ";
+              List<ItemVenda> lista = new ArrayList<>();
+       
+            PreparedStatement ps = con.prepareStatement(query);         
+            ps.setInt(1, venda_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                ItemVenda item = new ItemVenda();
+                Produto prod = new Produto();
+                
+                 prod.setNome(rs.getString("p.nome"));
+                 item.setQuantidade(rs.getInt("i.qtd"));
+                 prod.setPreco(rs.getDouble("p.preco"));
+                 item.setSubTotal(rs.getDouble("i.subtotal"));
+                
+                 item.setProduto(prod);         
+              
+                
+                lista.add(item);
+            }
+            return lista;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+    }
+      
 
 }
