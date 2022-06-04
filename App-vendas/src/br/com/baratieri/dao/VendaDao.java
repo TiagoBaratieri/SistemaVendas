@@ -114,4 +114,29 @@ public class VendaDao {
         return lista;
 
     }
+    
+     //Metodo que calcula total da venda por data
+    public double retornaTotalVendaPorData(LocalDate dataVenda) {
+        try {
+
+            double totalVenda = 0;
+
+            String sql = "select sum(total_venda) as total from tb_vendas where data_venda = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, dataVenda.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalVenda = rs.getDouble("total");
+            }
+
+            return totalVenda;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

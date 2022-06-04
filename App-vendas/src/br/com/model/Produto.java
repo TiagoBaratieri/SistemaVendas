@@ -16,6 +16,7 @@ public class Produto {
     private double preco;
     private Fornecedor fornecedor;
     private int quantidadeEstoque;
+    private String dataEntrada;
 
     public int getId() {
         return id;
@@ -63,6 +64,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(String dataEntrada) {
+        this.dataEntrada = dataEntrada;
     }
     
     

@@ -6,8 +6,8 @@ package br.com.baratieri.dao;
 
 import br.com.baratieri.jdbc.ConnectionFactory;
 import br.com.baratieri.util.Hash;
-import br.com.baratieri.view.FormLogin1;
-import br.com.baratieri.view.FrameMenu;
+import br.com.baratieri.view.FramLogin;
+import br.com.baratieri.view.FramMenu;
 import br.com.model.Usuario;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -180,22 +180,43 @@ public class UsuarioDao {
 
             ResultSet rs = stmt.executeQuery();
 
-            FrameMenu tela = new FrameMenu();
+            FramMenu tela = new FramMenu();
 
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Seja bem vindo");
-                tela.usuarioLogado = rs.getString("login");
-                tela.setVisible(true);
+                //Usuario logou
 
-                tela.setVisible(true);
+                //Caso o usuario seja do tipo admin
+                if (rs.getString("nivel_acesso").equals("Admim")) {
+
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
+                    tela.usuarioLogado = rs.getString("login");
+           
+
+                    tela.setVisible(true);
+                } //Caso o usuario seja do tipo limitado 
+                else if (rs.getString("nivel_acesso").equals("Usuário")) {
+
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
+                    tela.usuarioLogado  = rs.getString("login");
+
+                    //Desabilitar os menus
+                    tela.menuPosicao.setEnabled(false);
+                    tela.menuControleVenda.setVisible(false);
+
+                    tela.setVisible(true);
+
+                }
+
             } else {
-                JOptionPane.showMessageDialog(null, "Dados incorretos.");
-                new FormLogin1().setVisible(true);
+                //Dados incorretos
+                JOptionPane.showMessageDialog(null, "Dados incorretos!");
+                new FramLogin().setVisible(true);
+
             }
 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro : " + erro);
         }
-    }
 
+    }
 }
